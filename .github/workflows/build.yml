@@ -39,6 +39,7 @@ jobs:
       - name: Build APK
         env:
           PIP_VERSION: "23.3.2"
+          PIP_NO_BUILD_ISOLATION: "false"
         run: |
           yes | buildozer -v android debug
 
