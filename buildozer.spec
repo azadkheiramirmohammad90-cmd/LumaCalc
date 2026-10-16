@@ -1,5 +1,5 @@
 [app]
-
+icon.filename = %(source.dir)s/icon.png
 title = LumaCalc
 package.name = lumacalc
 package.domain = org.lumacalc
