@@ -48,6 +48,8 @@ jobs:
           STORE_PASS: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
         run: |
+          ls -l "$RUNNER_TEMP/lumacalc-release.jks"
+          sha256sum "$RUNNER_TEMP/lumacalc-release.jks"
           keytool -list \
             -keystore "$RUNNER_TEMP/lumacalc-release.jks" \
             -storepass "$STORE_PASS" \
