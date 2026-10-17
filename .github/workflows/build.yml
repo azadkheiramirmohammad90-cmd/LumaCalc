@@ -43,7 +43,15 @@ jobs:
           test -n "$KEY_BASE64"
           echo "$KEY_BASE64" | base64 --decode > "$RUNNER_TEMP/lumacalc-release.jks"
           chmod 600 "$RUNNER_TEMP/lumacalc-release.jks"
-
+      - name: Verify signing key
+        env:
+          STORE_PASS: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+        run: |
+          keytool -list \
+            -keystore "$RUNNER_TEMP/lumacalc-release.jks" \
+            -storepass "$STORE_PASS" \
+            -alias "$KEY_ALIAS"
       - name: Build signed APK
         env:
           PIP_VERSION: "23.3.2"
