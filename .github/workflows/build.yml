@@ -7,7 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,16 +22,13 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Install system dependencies
+      - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y \
             autoconf automake libtool libtool-bin m4 pkg-config \
             zlib1g-dev libncurses5-dev libncursesw5-dev \
             libtinfo6 cmake
-
-      - name: Install Buildozer
-        run: |
           python -m pip install --upgrade pip
           pip install "Cython<3" "buildozer==1.5.0"
 
@@ -40,8 +36,7 @@ jobs:
         env:
           PIP_VERSION: "23.3.2"
           PIP_NO_BUILD_ISOLATION: "false"
-        run: |
-          yes | buildozer -v android debug
+        run: yes | buildozer -v android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
