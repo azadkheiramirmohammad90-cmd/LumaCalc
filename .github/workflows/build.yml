@@ -69,6 +69,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: LumaCalc-APK
-          path: bin/*.aab
+          path: bin/*.apk
           if-no-files-found: error
           
